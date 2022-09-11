@@ -30,6 +30,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		
 		http.cors(); // cors() => 'il utilise pour les nomes de domaines qui sont defferente'
 		http.csrf().disable();
+		//http.authorizeRequests().antMatchers("/products").hasAuthority("USER");
 		http.authorizeRequests().antMatchers(HttpMethod.POST,SecurityConstants.SIGN_UP_URL).permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.POST,SecurityConstants.SIGN_UP_URL+"/admin").permitAll();
 		http.authorizeRequests().anyRequest().authenticated();

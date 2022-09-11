@@ -120,7 +120,7 @@ public class UserController {
 	@PutMapping(path = "/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
 					MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<UserResponse> updateUser(@PathVariable String id, @RequestBody UserRequest userRequest) {
+	public ResponseEntity<UserResponse> updateUser(@PathVariable String id, @RequestBody @Valid UserRequest userRequest) {
 		ModelMapper modelMapper = new ModelMapper();
 		UserDto userDto = modelMapper.map(userRequest, UserDto.class);
 

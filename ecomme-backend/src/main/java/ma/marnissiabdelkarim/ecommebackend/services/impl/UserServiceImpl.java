@@ -55,9 +55,12 @@ public class UserServiceImpl implements UserService {
 	public UserDto createUser(UserDto user) {
 		System.out.println(user);
 		UserEntity checkUser = userRepository.findByEmail(user.getEmail());
-
+		UserEntity checkUser2 = userRepository.findByUsername(user.getUsername());
 		if (checkUser != null) {
 			throw new RuntimeException("Email Already Exists");
+		}
+		if (checkUser2 != null) {
+			throw new RuntimeException("Username Already Exists");
 		}
 
 		
@@ -210,7 +213,8 @@ public class UserServiceImpl implements UserService {
 		if (search.isEmpty()) {
 			 userPage = userRepository.findAll(pageableRequest);
 		} else {
-			 userPage = userRepository.findAllUserByCriteria(pageableRequest,search); 
+			 //userPage = userRepository.findAllUserByCriteria(pageableRequest,search); 
+			 userPage = userRepository.findByUsernameIgnoreCaseContaining(pageableRequest,search); 
 		}
 		
 		List<UserEntity> userEntities = userPage.getContent();

@@ -8,5 +8,6 @@ import ma.marnissiabdelkarim.ecommebackend.entities.RoleEntity;
 @Repository
 public  interface RoleRepository extends JpaRepository<RoleEntity,Long> {
 	RoleEntity findByRoleName(String rolename);
+	
 
 }

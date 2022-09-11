@@ -8,6 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import ma.marnissiabdelkarim.ecommebackend.entities.ProductEntity;
 import ma.marnissiabdelkarim.ecommebackend.entities.UserEntity;
 
 
@@ -17,6 +18,7 @@ public interface UserRepository extends PagingAndSortingRepository<UserEntity, L
 	UserEntity findByEmail(String email);
 
 	UserEntity findByUserId(String userId);
+	UserEntity findByUsername(String username);
 
 	public Page<UserEntity> findAll(Pageable page);
 
@@ -33,6 +35,9 @@ public interface UserRepository extends PagingAndSortingRepository<UserEntity, L
 			  "SELECT * FROM users u WHERE u.username=?1", nativeQuery
 			  = true) Page<UserEntity> findAllUserByCriteria(Pageable pageable, String
 			  search);
+	
+	
+	Page<UserEntity> findByUsernameIgnoreCaseContaining(Pageable pageable,String name);
 
 	/*
 	 * @Query(value =
