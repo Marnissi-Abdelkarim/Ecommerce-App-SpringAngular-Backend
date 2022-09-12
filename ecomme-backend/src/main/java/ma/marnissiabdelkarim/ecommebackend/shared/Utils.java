@@ -4,6 +4,7 @@ package ma.marnissiabdelkarim.ecommebackend.shared;
 import java.security.SecureRandom;
 import java.util.Random;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,5 +22,7 @@ public class Utils {
 		return new String(returnValue);
 		
 	}
+	
+	
 
 }

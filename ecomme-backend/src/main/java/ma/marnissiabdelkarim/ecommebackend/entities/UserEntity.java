@@ -17,7 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -66,6 +66,10 @@ public class UserEntity implements Serializable {
         inverseJoinColumns = @JoinColumn(
           name = "role_id", referencedColumnName = "id")) 
     private Collection<RoleEntity> roles=new ArrayList<>();
+	
+	
+	@OneToMany(mappedBy = "user")
+	private List<CustomerEntity> customers;
 	
 //	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy ="users")
 //	private Collection<RoleEntity> roles =new ArrayList<>();

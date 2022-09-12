@@ -228,4 +228,13 @@ public class UserServiceImpl implements UserService {
 		return usersDto;
 	}
 
+
+	@Override
+	public UserEntity findUserByEmail(String email) {
+		UserEntity userEntity = userRepository.findByEmail(email);
+		if(userEntity==null) throw new UsernameNotFoundException("user with this email does not exist");
+		
+		return userEntity;
+	}
+
 }

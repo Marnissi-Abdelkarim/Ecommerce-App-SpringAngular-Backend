@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import ma.marnissiabdelkarim.ecommebackend.entities.UserEntity;
 import ma.marnissiabdelkarim.ecommebackend.shared.dto.UserDto;
 
 
 public interface UserService extends UserDetailsService {
 	
+	
+	UserEntity findUserByEmail(String email);
 	UserDto createUser(UserDto userDto);
 	UserDto createAdmin(UserDto user);
 	UserDto getUser(String email);
