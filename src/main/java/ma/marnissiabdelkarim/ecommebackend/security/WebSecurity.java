@@ -15,6 +15,15 @@ import ma.marnissiabdelkarim.ecommebackend.services.UserService;
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 	
+	private String[] AUTHORIZED_ROUTES = {
+			"/login/**",
+			"/register/**",
+			"/swagger-resources/**",
+			"/swagger-ui/**",
+			"/v2/api-docs",
+			"/webjars/**"
+	};
+	
 	
 	final UserService userDetailsService; 
 	final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -31,6 +40,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		http.cors(); // cors() => 'il utilise pour les nomes de domaines qui sont defferente'
 		http.csrf().disable();
 		//http.authorizeRequests().antMatchers("/products").hasAuthority("USER");
+		http.authorizeRequests().antMatchers(AUTHORIZED_ROUTES).permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.POST,SecurityConstants.SIGN_UP_URL).permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.POST,SecurityConstants.SIGN_UP_URL+"/admin").permitAll();
 		http.authorizeRequests().anyRequest().authenticated();
