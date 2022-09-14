@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "users")
+@Entity(name = "appusers")
 public class UserEntity implements Serializable {
 
 	/**
