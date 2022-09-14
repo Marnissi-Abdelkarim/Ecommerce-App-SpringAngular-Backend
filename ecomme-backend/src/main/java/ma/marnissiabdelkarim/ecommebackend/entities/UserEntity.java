@@ -68,7 +68,7 @@ public class UserEntity implements Serializable {
     private Collection<RoleEntity> roles=new ArrayList<>();
 	
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
 	private List<CustomerEntity> customers;
 	
 //	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy ="users")

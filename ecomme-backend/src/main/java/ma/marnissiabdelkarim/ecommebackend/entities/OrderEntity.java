@@ -1,9 +1,10 @@
 package ma.marnissiabdelkarim.ecommebackend.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,50 +14,39 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.springframework.lang.Nullable;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data @AllArgsConstructor @NoArgsConstructor
-@Entity(name = "products")
-public class ProductEntity implements Serializable{
-	/**
+@Entity(name = "orders")
+public class OrderEntity implements Serializable {/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6130682492996225092L;
-
+	private static final long serialVersionUID = 5844716496094548915L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@Column(nullable = false,unique = true)
-	private String productId;
-	
-	@Column(nullable = false)
-	private String name;
+	private String orderId;
 	
 	@Column(nullable = true)
-	private String description;
+	private Date date=new Date();
 	
 	@Column(nullable = false)
-	private double currentPrice;
-	
-	@Column(nullable = true)
-	private double discountedPrice;
+	private double totalAmount;
 	
 	@Column(nullable = false)
-	private boolean promotion=false;
-	
+	private boolean isPayementConfirmed=false;
 	
 	@ManyToOne
-	@JoinColumn(name = "category_id")
-	private CategoryEntity category;
+	@JoinColumn(name = "customer_id")
+	private CustomerEntity customer;
 	
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "order",cascade = CascadeType.REMOVE)
 	private List<OrderItemEntity> orderItems;
 	
-	
+
 }
